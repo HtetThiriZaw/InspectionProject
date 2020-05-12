@@ -1,0 +1,39 @@
+﻿@model InspectionProject.Models.LoginViewModel
+@{
+    ViewBag.Title = "Login";
+    Layout = null; // To remove default layout from Login page
+}
+
+<head>
+    @Styles.Render("~/Content/css")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</head>
+<body>
+    <div id="login-div">
+        <div id="login-form-div">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "error-message" })
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Username, new { @class = "form-label" })
+                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control form-input gradient-input", placeholder = "Username", autocomplete = "off" } })
+                    @Html.ValidationMessageFor(model => model.Username, "", new { @class = "error-message" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Password, new { @class = "form-label" })
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control form-input", placeholder = "Password", autocomplete = "off" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "error-message" })
+                </div>
+
+                <div>
+                    <button type="submit" class="btn">Login</button>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+
